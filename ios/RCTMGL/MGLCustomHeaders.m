@@ -54,6 +54,7 @@
 }
 
 - (void)addHeader:(NSString *)value forHeaderName:(NSString *)headerName {
+    NSLog(@"Add custom header %@ %@", headerName, value);
     if(!areHeadersAdded) {
         // Add them
     }
@@ -63,6 +64,7 @@
 }
 
 - (void)removeHeader:(NSString *)header {
+    NSLog(@"Remove custom header %@ %@", headerName, value);
     [_currentHeaders removeObjectForKey:header];
     [[[MGLNetworkConfiguration sharedManager] sessionConfiguration] setHTTPAdditionalHeaders:_currentHeaders];
 
