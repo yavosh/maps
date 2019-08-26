@@ -64,7 +64,7 @@
 }
 
 - (void)removeHeader:(NSString *)header {
-    NSLog(@"Remove custom header %@ %@", headerName, value);
+    NSLog(@"Remove custom header %@", header);
     [_currentHeaders removeObjectForKey:header];
     [[[MGLNetworkConfiguration sharedManager] sessionConfiguration] setHTTPAdditionalHeaders:_currentHeaders];
 
