@@ -6,10 +6,10 @@
 
 #import "MGLCustomHeaders.h"
 #import <Mapbox/Mapbox.h>
+#import "MapBox/MGLNetworkConfiguration.h"
 
 @implementation MGLCustomHeaders {
-    NSMutableArray<NSString*> *listeners;
-    NSMutableDictionary<NSString*, NSString*> *currentHeaders;
+    NSMutableDictionary<NSString*, NSString*> *_currentHeaders;
     BOOL areHeadersAdded;
 }
 
@@ -24,8 +24,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        listeners = [[NSMutableArray alloc] init];
-        currentHeaders = [[NSMutableDictionary alloc] init];
+        _currentHeaders = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -59,12 +58,15 @@
         // Add them
     }
 
-    [currentHeaders setObject:value forKey:headerName];
+    [_currentHeaders setObject:value forKey:headerName];
+    [[[MGLNetworkConfiguration sharedManager] sessionConfiguration] setHTTPAdditionalHeaders:_currentHeaders];
 }
 
 - (void)removeHeader:(NSString *)header {
-    [currentHeaders removeObjectForKey:header];
-    if(areHeadersAdded && [currentHeaders count]>0) {
+    [_currentHeaders removeObjectForKey:header];
+    [[[MGLNetworkConfiguration sharedManager] sessionConfiguration] setHTTPAdditionalHeaders:_currentHeaders];
+
+    if(areHeadersAdded && [_currentHeaders count]>0) {
         // Remove them
     }
 }
