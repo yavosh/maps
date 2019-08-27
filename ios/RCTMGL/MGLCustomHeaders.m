@@ -6,7 +6,7 @@
 
 #import "MGLCustomHeaders.h"
 #import <Mapbox/Mapbox.h>
-#import "MapBox/MGLNetworkConfiguration.h"
+#import <MapBox/MGLNetworkConfiguration.h>
 
 @implementation MGLCustomHeaders {
     NSMutableDictionary<NSString*, NSString*> *_currentHeaders;
