@@ -4,7 +4,7 @@
 
 Custom headers are implemented using OkHttp interseptor for android and method swizzling for iOS.
 
-Method swizzling is done on the `[NSMutableURLRequest requestWithURL:]` to allow adding headers during runtime.
+[Method swizzling](https://en.wikipedia.org/wiki/Monkey_patch) is done on the `[NSMutableURLRequest requestWithURL:]` to allow adding headers during runtime.
 
 ### Prerequisites
 
@@ -14,7 +14,7 @@ None
 
 #### IOS
 
-To enable this on iOS you need to call `[MGLCustomHeaders initHeaders]` pretty early in the lifecycle of the application.
+To enable this on iOS you need to call `[MGLCustomHeaders initHeaders]` pretty early in the lifecycle of the application. This will swizzle the custom method.
 Suggested location is `[AppDelegate application: didFinishLaunchingWithOptions:]`
 
 #### Working example (AppDelegate.m)
